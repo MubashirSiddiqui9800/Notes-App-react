@@ -9,6 +9,10 @@ export const App = () => {
     setheading("");
     setnotes("");
   };
+  const deleteNote = (index) => {
+    const dlt = allNotes.splice(index, 1);
+    setallNotes([...allNotes]);
+  };
   return (
     <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center gap-10 py-10">
       {/* ===== Form Card ===== */}
@@ -70,12 +74,26 @@ export const App = () => {
           {allNotes.map((props, index) => {
             return (
               <div
-              key={index}
-              className="bg-black/40 p-4 rounded-xl border border-purple-400 max-h-40 overflow-y-auto break-words"
-            >
-              <h3 className="font-medium text-2xl mb-2 break-words">{props.heading}</h3>
-              <p className="text-lg text-gray-300 break-words">{props.notes}</p>
-            </div>
+                key={index}
+                className="bg-black/40 p-4 rounded-xl border border-purple-400 break-words"
+              >
+                <h3 className="font-medium text-2xl mb-2 break-words">
+                  {props.heading}
+                </h3>
+                <p className="text-lg text-gray-300 break-words">
+                  {props.notes}
+                </p>
+                <button
+                  onClick={() => deleteNote(index)}
+                  className="mt-4 w-full 
+                  bg-gradient-to-r from-red-500 to-pink-600
+                  py-2 rounded-xl font-semibold
+                  hover:scale-105 transition-transform
+                  shadow-lg"
+                >
+                  ❌ Delete Note
+                </button>
+              </div>
             );
           })}
         </div>
